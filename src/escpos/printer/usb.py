@@ -187,14 +187,14 @@ class Usb(Escpos):
         :param msg: arbitrary code to be printed
         """
         assert self.device
-        self.device.write(self.out_ep, msg, 5000)
+        self.device.write(self.out_ep, msg, self.timeout)
 
     def _read(self) -> bytes:
         """Read a data buffer and return it to the caller."""
         assert self.device
         read_buffer = 256
         print(f"[python-escpos]Reading {read_buffer} bytes from USB")
-        return self.device.read(self.in_ep, read_buffer, 5000)
+        return self.device.read(self.in_ep, read_buffer)
 
     @dependency_usb
     def close(self) -> None:
