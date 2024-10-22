@@ -192,9 +192,7 @@ class Usb(Escpos):
     def _read(self) -> bytes:
         """Read a data buffer and return it to the caller."""
         assert self.device
-        read_buffer = 16
-        print(f"[python-escpos]Reading {read_buffer} bytes from USB")
-        return self.device.read(self.in_ep, read_buffer)
+        return self.device.read(self.in_ep, 16)
 
     @dependency_usb
     def close(self) -> None:
